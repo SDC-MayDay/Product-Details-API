@@ -27,7 +27,22 @@ const getProduct = (req, res) => {
   })
 }
 
+const getProductRelated = (req, res) => {
+  const { product_id } = req.params;
+
+  model.getProductRelated(product_id, (err, data) => {
+    if (err) {
+
+      res.status(400).send(err);
+    } else {
+
+      res.status(200).send(data);
+    }
+  })
+}
+
 module.exports = {
   getProducts,
-  getProduct
+  getProduct,
+  getProductRelated
 }

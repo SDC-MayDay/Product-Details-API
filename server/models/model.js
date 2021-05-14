@@ -25,7 +25,21 @@ const getProduct = (product_id, callback) => {
   })
 }
 
+const getProductRelated = (product_id, callback) => {
+
+  const q = `Select * FROM related WHERE id_products = ${product_id}`;
+
+   db.query(q, (err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, data);
+    }
+  })
+}
+
 module.exports = {
   getProducts,
-  getProduct
+  getProduct,
+  getProductRelated
 }

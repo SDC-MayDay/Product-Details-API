@@ -11,7 +11,7 @@ const path = require('path')
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/products', (req, res) => {
-  console.log('request recieved')
+  //console.log('request recieved')
   controller.getProducts(req, res);
 });
 
