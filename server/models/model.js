@@ -2,8 +2,7 @@ const db = require('../../database')
 
 const getProducts = (callback) => {
   const q = 'Select * FROM products';
-
-   db.query(q, (err, data) => {
+  db.query(q, (err, data) => {
     if (err) {
       callback(err);
     } else {
@@ -13,10 +12,8 @@ const getProducts = (callback) => {
 }
 
 const getProduct = (product_id, callback) => {
-
   const q = `Select * FROM products WHERE id = ${product_id}`;
-
-   db.query(q, (err, data) => {
+  db.query(q, (err, data) => {
     if (err) {
       callback(err);
     } else {
@@ -26,10 +23,19 @@ const getProduct = (product_id, callback) => {
 }
 
 const getProductRelated = (product_id, callback) => {
-
   const q = `Select * FROM related WHERE id_products = ${product_id}`;
+  db.query(q, (err, data) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, data);
+    }
+  })
+}
 
-   db.query(q, (err, data) => {
+const getProductStyle = (product_id, callback) => {
+  const q = `SELECT styles.*, photos.*, skus.* FROM styles INNER JOIN photos ON photos.id_styles = styles.id INNER JOIN skus ON skus.id_styles = styles.id WHERE styles.id_products = ${product_id}`;
+  db.query(q, (err, data) => {
     if (err) {
       callback(err);
     } else {
@@ -41,5 +47,7 @@ const getProductRelated = (product_id, callback) => {
 module.exports = {
   getProducts,
   getProduct,
-  getProductRelated
+  getProductRelated,
+  getProductStyle
 }
+

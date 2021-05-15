@@ -35,7 +35,24 @@ const getProductRelated = (req, res) => {
 
       res.status(400).send(err);
     } else {
+      const related = [];
 
+      data.forEach(element => {related.push(element.related_product_id)})
+
+      res.status(200).send(related);
+    }
+  })
+}
+
+const getProductStyles = (req, res)  => {
+   const { product_id } = req.params;
+
+    model.getProductStyle(product_id, (err, data) => {
+    if (err) {
+      //console.log('this is an error')
+      res.status(400).send(err);
+    } else {
+      console.log('this is a success', data)
       res.status(200).send(data);
     }
   })
@@ -44,5 +61,6 @@ const getProductRelated = (req, res) => {
 module.exports = {
   getProducts,
   getProduct,
-  getProductRelated
+  getProductRelated,
+  getProductStyles
 }

@@ -1,7 +1,7 @@
 {
   "name": "Product-Details-SD",
   "version": "1.0.0",
-  "description": "",
+  "description": "The Product Details system design backend/api/database ",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js"
